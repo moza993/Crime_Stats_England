@@ -10,8 +10,8 @@ constabulaires = pd.read_csv(url)
 constabulary = st.selectbox("Select a Constabulary:", sorted(constabulaires['Constabulary'].dropna().unique()))
 
 # Dynamically load only the selected constabulary's data
-url_base = "https://raw.githubusercontent.com/moza993/Crime_Stats_England/main/data/"
-filename = f"{constabulary.replace(' ', '_')}.csv"
+url_base = "https://raw.githubusercontent.com/moza993/Crime_Stats_England/main/split_data/"
+filename = "('"+f"{constabulary.replace(' ', '_')}"+"'%2C).csv"
 map_df = pd.read_csv(url_base + filename)
 
 st.set_page_config(page_title="Crime Map Viewer", layout="wide")
