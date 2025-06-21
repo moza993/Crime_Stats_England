@@ -4,7 +4,7 @@ from folium.plugins import MarkerCluster
 import streamlit as st
 from streamlit_folium import st_folium
 
-url = "https://raw.githubusercontent.com/moza993/Crime_Stats_England/main/data/constabularies.csv"
+url = "https://raw.githubusercontent.com/moza993/Crime_Stats_England/refs/heads/main/constabularies.csv"
 constabulaires = pd.read_csv(url)
 
 constabulary = st.selectbox("Select a Constabulary:", sorted(constabulaires['Constabulary'].dropna().unique()))
