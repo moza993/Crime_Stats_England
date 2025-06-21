@@ -31,6 +31,11 @@ map_df = load_map_data(constabulary)
 crime_type = st.selectbox("Select a Crime Type:", sorted(map_df['Crime type'].dropna().unique()))
 month = st.selectbox("Select a Month:", sorted(map_df['Month'].dropna().unique()))
 
+if st.button("🔄 Clear Cache"):
+    st.cache_data.clear()
+    st.experimental_rerun()
+
+
 # --- Filtering the data ---
 filtered = map_df[
     (map_df['Crime type'] == crime_type) &
