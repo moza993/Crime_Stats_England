@@ -39,9 +39,8 @@ if not filtered.empty:
             tooltip=f"Crimes: {row['Count']}",
             popup=(
                 f"Crime: {row['Crime type']}<br>"
-                f"Date: {row['Month']}<br>"
                 f"Constabulary: {row['Constabulary']}<br>"
-                f"Count: {row['Count']}"
+                f"Crimes: {row['Count']}"
             ),
         ).add_to(cluster)
 
