@@ -4,6 +4,20 @@ from folium.plugins import MarkerCluster
 import streamlit as st
 from streamlit_folium import st_folium
 
+@st.cache_data
+def load_constabulary_data():
+    return pd.read_csv("https://raw.githubusercontent.com/moza993/Crime_Stats_England/refs/heads/main/constabularies.csv")
+
+@st.cache_data
+def load_map_data(constabulary):
+    url_base = "https://raw.githubusercontent.com/moza993/Crime_Stats_England/main/split_data/"
+    filename = f"{constabulary.replace(' ', '_')}.csv"
+    return pd.read_csv(url_base + filename)
+
+constabulaires = load_constabulary_data()
+map_df = load_map_data(constabulary)
+
+
 url = "https://raw.githubusercontent.com/moza993/Crime_Stats_England/refs/heads/main/constabularies.csv"
 constabulaires = pd.read_csv(url)
 
