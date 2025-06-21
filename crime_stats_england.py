@@ -4,8 +4,10 @@ from folium.plugins import MarkerCluster
 import streamlit as st
 from streamlit_folium import st_folium
 
-url = "https://raw.githubusercontent.com/moza993/Crime_Stats_England/refs/heads/main/map_crime_data.csv"
-map_df = pd.read_csv(url)
+url = "https://raw.githubusercontent.com/moza993/Crime_Stats_England/main/data/constabularies.csv"
+constabulaires = pd.read_csv(url)
+
+constabulary = st.selectbox("Select a Constabulary:", sorted(constabulaires['Constabulary'].dropna().unique()))
 
 # Dynamically load only the selected constabulary's data
 url_base = "https://raw.githubusercontent.com/moza993/Crime_Stats_England/main/data/"
@@ -15,17 +17,7 @@ map_df = pd.read_csv(url_base + filename)
 st.set_page_config(page_title="Crime Map Viewer", layout="wide")
 st.title("🗺️ Interactive Crime Map - April 2024 to 2025")
 
-# --- Filters ---
 crime_type = st.selectbox("Select a Crime Type:", sorted(map_df['Crime type'].dropna().unique()))
-constabulary = st.selectbox("Select a Constabulary:", sorted(map_df['Constabulary'].dropna().unique()))
-
-
-
-
-
-url = "https://raw.githubusercontent.com/moza993/Crime_Stats_England/refs/heads/main/map_crime_data.csv"
-map_df = pd.read_csv(url)
-
 
 # --- Filtering the data ---
 filtered = map_df[
@@ -34,7 +26,7 @@ filtered = map_df[
 ].sort_values(by='Count', ascending=False)
 
 # --- Show filtered count ---
-st.markdown(f"Showing **{len(filtered)}** `{crime_type}` crimes in `{constabulary}` during `{month}`")
+st.markdown(f"Showing **{len(filtered)}** `{crime_type}` crimes in `{constabulary}`")
 
 # --- Generate Folium map ---
 if not filtered.empty:
