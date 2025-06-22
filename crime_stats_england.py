@@ -43,11 +43,11 @@ if fidelity_option == "High fidelity (per constabulary/month)":
     constabulaires = load_constabularies()
     constabulary = st.selectbox("Select a Constabulary:", sorted(constabulaires['Constabulary'].dropna().unique()))
     map_df = load_high_fidelity_data(constabulary)
+    month = st.selectbox("Select a Month:", sorted(map_df['Month'].dropna().unique()))
 else:
     map_df = load_low_fidelity_data()
 
 crime_type = st.selectbox("Select a Crime Type:", sorted(map_df['Crime type'].dropna().unique()))
-month = st.selectbox("Select a Month:", sorted(map_df['Month'].dropna().unique()))
 
 # --- Filtering ---
 filtered = map_df[
