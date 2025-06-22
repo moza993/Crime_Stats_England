@@ -70,8 +70,8 @@ if not filtered.empty:
 
         m = folium.Map(location=[filtered['Latitude'].mean(), filtered['Longitude'].mean()],
                 zoom_start=7,
-                min_zoom=4,
-                max_zoom=12)
+                min_zoom=7,
+                max_zoom=11)
 
         heat_data = filtered[['Latitude', 'Longitude', 'Count']].dropna().values.tolist()
 
@@ -92,8 +92,8 @@ if not filtered.empty:
     else:
 
         m = folium.Map(location=[filtered['Latitude'].mean(), filtered['Longitude'].mean()],
-                zoom_start=7,
-                max_zoom=12)
+                zoom_start=5,
+                min_zoom=10)
 
         cluster = MarkerCluster().add_to(m)
         for _, row in filtered.iterrows():
