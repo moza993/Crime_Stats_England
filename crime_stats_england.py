@@ -79,8 +79,8 @@ if not filtered.empty:
             gradient={
                 0.2: 'blue',
                 0.4: 'lime',
-                0.6: 'orange',
-                0.8: 'red'
+                0.7: 'orange',
+                0.9: 'red'
             }
         ).add_to(m)
 
