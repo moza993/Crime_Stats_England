@@ -19,7 +19,7 @@ def load_high_fidelity_data(selected_constabulary):
 
 @st.cache_data
 def load_low_fidelity_data():
-    url = "https://raw.githubusercontent.com/moza993/Crime_Stats_England/refs/heads/main/map_crime_data.csv"
+    url = "https://raw.githubusercontent.com/moza993/Crime_Stats_England/refs/heads/main/low_fidelity/low_fidelity_data.csv"
     return pd.read_csv(url)
 
 # --- App Layout ---
