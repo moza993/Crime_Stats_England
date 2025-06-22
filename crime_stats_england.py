@@ -61,7 +61,7 @@ if fidelity_option == "By constabulary & month":
         (map_df['Month'] == month)
     ].sort_values(by='Count', ascending=False)
 
-    st.markdown(f"Showing **{len(filtered)}** `{crime_type}` crimes in `{constabulary}` for `{month}`.")
+    st.markdown(f"Showing **{sum(filtered['Count'])}** `{crime_type}` crimes in `{constabulary}` for `{month}`.")
 
 else:
     map_df = load_low_fidelity_data()
@@ -71,7 +71,7 @@ else:
         (map_df['Crime type'] == crime_type)
     ].sort_values(by='Count', ascending=False)
 
-    st.markdown(f"Showing **{len(filtered)}** `{crime_type}` crimes across all constabularies for full year.")
+    st.markdown(f"Showing **{sum(filtered['Count'])}** `{crime_type}` crimes across all constabularies for full year.")
 
 # --- Map Creation ---
 if not filtered.empty:
