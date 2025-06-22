@@ -68,8 +68,22 @@ if not filtered.empty:
     m = folium.Map(location=[filtered['Latitude'].mean(), filtered['Longitude'].mean()], zoom_start=7)
 
     if fidelity_option == "All data (lower fidelity)":
-        heat_data = filtered[['Latitude', 'Longitude']].dropna().values.tolist()
-        HeatMap(heat_data).add_to(m)
+        heat_data = filtered[['Latitude', 'Longitude', 'Count']].dropna().values.tolist()
+
+        HeatMap(
+            data=heat_data,
+            radius=15,
+            blur=15,
+            max_zoom=8,
+            max_val=filtered['Count'].max(),
+            gradient={
+                0.2: 'blue',
+                0.4: 'lime',
+                0.6: 'orange',
+                0.8: 'red'
+            }
+        ).add_to(m)
+
     else:
         cluster = MarkerCluster().add_to(m)
         for _, row in filtered.iterrows():
