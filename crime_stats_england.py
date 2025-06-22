@@ -34,15 +34,17 @@ fidelity_option = st.radio(
 )
 
 # --- Cache reset button ---
-if "clear_cache_trigger" not in st.session_state:
-    st.session_state.clear_cache_trigger = False
+if "should_rerun" not in st.session_state:
+    st.session_state.should_rerun = False
 
-if st.button("🔄 Clear Cache"):
+clear_button = st.button("🔄 Clear Cache")
+if clear_button and not st.session_state.should_rerun:
     st.cache_data.clear()
-    st.session_state.clear_cache_trigger = True
+    st.session_state.should_rerun = True
+    st.stop()  # Gracefully stop the script before rerunning
 
-if st.session_state.clear_cache_trigger:
-    st.session_state.clear_cache_trigger = False
+if st.session_state.should_rerun:
+    st.session_state.should_rerun = False
     st.experimental_rerun()
 
 
