@@ -12,7 +12,7 @@ def load_constabularies():
 
 @st.cache_data
 def load_high_fidelity_data(selected_constabulary):
-    url_base = "https://raw.githubusercontent.com/moza993/Crime_Stats_England/main/split_data/"
+    url_base = "https://raw.githubusercontent.com/moza993/Crime_Stats_England/refs/heads/main/high_fidelity/"
     filename = "('"+f"{constabulary.replace(' ', '_')}"+"'%2C).csv"
 
     return pd.read_csv(url_base + filename)
