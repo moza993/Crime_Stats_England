@@ -77,7 +77,7 @@ if not filtered.empty:
 
         HeatMap(
             data=heat_data,
-            radius=15,
+            radius=12,
             blur=15,
             max_zoom=3,
             max_val=filtered['Count'].max(),
