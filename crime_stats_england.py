@@ -85,17 +85,17 @@ if not filtered.empty:
 
         HeatMap(
             data=heat_data,
-            radius=12,
+            radius=13,
             blur=15,
             max_zoom=3,
             max_val=filtered['Count'].max(),
             gradient = {
-                0.1: 'navy',       # Very low density
-                0.25: 'blue',
-                0.35: 'cyan',
-                0.45: 'lime',
-                0.55: 'yellow',
-                0.65: 'orange',
+                0.0: 'navy',       # Very low density
+                0.1: 'blue',
+                0.3: 'cyan',
+                0.4: 'lime',
+                0.6: 'yellow',
+                0.7: 'orange',
                 0.85: 'red',
                 1.0: 'maroon'       # Extreme density
             }
