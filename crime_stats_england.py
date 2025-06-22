@@ -83,12 +83,12 @@ if not filtered.empty:
             max_val=filtered['Count'].max(),
             gradient = {
                 0.1: 'navy',       # Very low density
-                0.2: 'blue',
-                0.3: 'cyan',
+                0.25: 'blue',
+                0.35: 'cyan',
                 0.45: 'lime',
-                0.6: 'yellow',
-                0.75: 'orange',
-                0.9: 'red',
+                0.55: 'yellow',
+                0.65: 'orange',
+                0.85: 'red',
                 1.0: 'maroon'       # Extreme density
             }
         ).add_to(m)
@@ -96,7 +96,7 @@ if not filtered.empty:
     else:
 
         m = folium.Map(location=[filtered['Latitude'].mean(), filtered['Longitude'].mean()],
-                zoom_start=5,
+                zoom_start=6,
                 min_zoom=9)
 
         cluster = MarkerCluster().add_to(m)
