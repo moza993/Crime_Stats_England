@@ -67,7 +67,7 @@ else:
 if not filtered.empty:
     m = folium.Map(location=[filtered['Latitude'].mean(), filtered['Longitude'].mean()], zoom_start=7)
 
-    if fidelity_option == "Low fidelity (all data)":
+    if fidelity_option == "All data (lower fidelity)":
         heat_data = filtered[['Latitude', 'Longitude']].dropna().values.tolist()
         HeatMap(heat_data).add_to(m)
     else:
