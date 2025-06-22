@@ -29,7 +29,7 @@ st.title("🗺️ Interactive Crime Map - April 2024 to 2025")
 # --- Fidelity Toggle ---
 fidelity_option = st.radio(
     "Select data fidelity:",
-    ["High fidelity (per constabulary/month)", "Low fidelity (all data)"],
+    ["By constabulary & month", "All data (lower fidelity)"],
     index=0
 )
 
@@ -39,24 +39,29 @@ if st.button("🔄 Clear Cache"):
     st.experimental_rerun()
 
 # --- Load data and set filters ---
-if fidelity_option == "High fidelity (per constabulary/month)":
+if fidelity_option == "By constabulary & month":
     constabulaires = load_constabularies()
     constabulary = st.selectbox("Select a Constabulary:", sorted(constabulaires['Constabulary'].dropna().unique()))
     map_df = load_high_fidelity_data(constabulary)
     month = st.selectbox("Select a Month:", sorted(map_df['Month'].dropna().unique()))
+    crime_type = st.selectbox("Select a Crime Type:", sorted(map_df['Crime type'].dropna().unique()))
+
+    filtered = map_df[
+        (map_df['Crime type'] == crime_type) &
+        (map_df['Month'] == month)
+    ].sort_values(by='Count', ascending=False)
+
+    st.markdown(f"Showing **{len(filtered)}** `{crime_type}` crimes in `{constabulary}` for `{month}`.")
+
 else:
     map_df = load_low_fidelity_data()
+    crime_type = st.selectbox("Select a Crime Type:", sorted(map_df['Crime type'].dropna().unique()))
 
-crime_type = st.selectbox("Select a Crime Type:", sorted(map_df['Crime type'].dropna().unique()))
+    filtered = map_df[
+        (map_df['Crime type'] == crime_type)
+    ].sort_values(by='Count', ascending=False)
 
-# --- Filtering ---
-filtered = map_df[
-    (map_df['Crime type'] == crime_type) &
-    (map_df['Constabulary'] == constabulary) &
-    (map_df['Month'] == month)
-].sort_values(by='Count', ascending=False)
-
-st.markdown(f"Showing **{len(filtered)}** `{crime_type}` crimes in `{constabulary}` for `{month}`.")
+    st.markdown(f"Showing **{len(filtered)}** `{crime_type}` crimes across all constabularies for full year.")
 
 # --- Map Creation ---
 if not filtered.empty:
