@@ -74,7 +74,7 @@ if not filtered.empty:
             data=heat_data,
             radius=15,
             blur=15,
-            max_zoom=8,
+            max_zoom=3,
             max_val=filtered['Count'].max(),
             gradient={
                 0.2: 'blue',
