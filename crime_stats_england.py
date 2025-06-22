@@ -81,11 +81,15 @@ if not filtered.empty:
             blur=15,
             max_zoom=3,
             max_val=filtered['Count'].max(),
-            gradient={
+            gradient = {
+                0.1: 'navy',       # Very low density
                 0.2: 'blue',
-                0.4: 'lime',
-                0.65: 'orange',
-                0.85: 'red'
+                0.3: 'cyan',
+                0.45: 'lime',
+                0.6: 'yellow',
+                0.75: 'orange',
+                0.9: 'red',
+                1.0: 'maroon'       # Extreme density
             }
         ).add_to(m)
 
