@@ -34,9 +34,17 @@ fidelity_option = st.radio(
 )
 
 # --- Cache reset button ---
+if "clear_cache_trigger" not in st.session_state:
+    st.session_state.clear_cache_trigger = False
+
 if st.button("🔄 Clear Cache"):
     st.cache_data.clear()
+    st.session_state.clear_cache_trigger = True
+
+if st.session_state.clear_cache_trigger:
+    st.session_state.clear_cache_trigger = False
     st.experimental_rerun()
+
 
 # --- Load data and set filters ---
 if fidelity_option == "By constabulary & month":
